@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://baxpfld1u7pn4"]
+
+[ext_resource type="Script" path="res://scenes/job_selector.gd" id="1_5cbcu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47q2e"]
+bg_color = Color(0.419813, 0.419813, 0.419813, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htgmp"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr0gw"]
+bg_color = Color(0.226707, 0.226708, 0.226707, 1)
+
+[node name="JobSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5cbcu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_47q2e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="JobOptionVBox" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/JobOptionVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Select Job"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/JobOptionVBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_htgmp")
+item_count = 1
+selected = 0
+popup/item_0/text = "Placeholder"
+popup/item_0/id = 0
+
+[node name="JobDescriptionVBox" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="JobNameLabel" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/JobDescriptionVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "JobName"
+
+[node name="DescriptionRichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/JobDescriptionVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+text = "Description"
+fit_content = true
+
+[node name="SkillsVBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SkillsLabel" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/SkillsVBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Skills"
+
+[node name="SkillsItemList" type="ItemList" parent="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/SkillsVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 5
+theme_override_font_sizes/font_size = 18
+item_count = 2
+item_0/text = "skill 1"
+item_1/text = "skill 2"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr0gw")
+
+[connection signal="item_selected" from="MarginContainer/PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/JobOptionVBox/OptionButton" to="." method="_on_option_button_item_selected"]
