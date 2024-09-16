@@ -3,6 +3,7 @@ extends Node
 # Import CSV data via FileAccess and return it as array of dictionary with the headers as the keys
 func import_csv_data(file_path) -> Array:
 	if not FileAccess.file_exists(file_path):
+		print("no file detected!")
 		return []
 	
 	var file = FileAccess.open(file_path, FileAccess.READ)
